@@ -4,23 +4,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-// first three bytes : 0xff 0xd8 0xff
-// fourth byte's first four bits : 1110
-
-// jpeg breaks up into 512 byte blocks
-// if it doesn't fit perfectly, file is padded with zeroes
-// (According to specification, leaving the zeroes might be ok?  but we'll see -- this might be a bug causer, so i need to keep it in mind)
-//================
-// iterate over bytes in raw file 512 bytes at a time, search first four bytes for jpeg pattern -- if the four bytes are missing, it means we're
-// still mid jpeg.
-//==
-// if we find a new jpeg, we save preceding address to a file, save and name the file in order that we find them 000.jpg, 001.jpg etc
-//================
-//
-//SO, i think what I want to do is:
-// open card.raw with [fopen].
-// read ______ things from card.raw, 512 bytes at a time, storing them ________
-
 typedef uint8_t BYTE;
 bool is_jpeg(BYTE buffer[]);
 
